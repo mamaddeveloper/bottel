@@ -19,7 +19,7 @@ from google.appengine.api import urlfetch
 from google.appengine.ext import ndb
 import webapp2
 
-TOKEN = '87673953:AAGbclnCMhL2PHYjB5_bwsgMY5FI-or-QDU'
+TOKEN = '122588379:AAEepyctVILJi-V2gHA4olBzwkByPC4RUWs'
 
 BASE_URL = 'https://api.telegram.org/bot' + TOKEN + '/'
 
@@ -118,8 +118,8 @@ class WebhookHandler(webapp2.RequestHandler):
 			#    reply('Bot disabled')
 			#    setEnabled(chat_id, False)
 
-			elif text == '/ayuda':
-				reply("Prueba a decir: \n /tiempo para la cuenta atras.\n /iker para frase mitica aleatoria de Iker.\n /lefuck para frase mitica aleatoria de LeFuck \n\n Bot creado por @ShurKevin")
+			elif text == '/command1':
+				reply("Prueba a decir: \n/tiempo para la cuenta atras.\n/cartel para ver el cartel del AS\n/iker para frase mitica aleatoria de Iker.\n/lefuck para frase mitica aleatoria de LeFuck\n/acorde para frase mitica de este.\n/alfonso para saber que se comeria.\n/michel para la frase de la sandia.\n/jess para sus orales\n/shurtiz para parar el endiose.\n/aaaa para saltos de linea.\n\n Bot creado por @ShurKevin")
 
 			elif text == '/tiempo':
 				limit = datetime.datetime(2015, 07, 28, 8, 0, 0)
@@ -155,48 +155,42 @@ class WebhookHandler(webapp2.RequestHandler):
 				text = str(text)
 				reply(text)
 
+			elif text == '/cartel':
+				reply('http://www.arenalsound.com/wp-content/uploads/2015/06/as_cartel5.jpg')
+
+			elif text == '/grupointeresante':
+				aleatorio = random.choice(['Sunset Sons', 'Don Broco', 'La Pegatina', 'Rayden\n(no troll)\n(no homo)', 'DJs From Mars', 'Rudimental', 'Carlos Sadness', 'The Kooks', 'Zedd', 'We Are Scientists', 'Twin Atlantic', 'The Subways', 'Supersubmarina', 'Nero', 'Mystery Skulls', 'Holy Bouncer', 'Monarchy', 'Varry Brava', 'South Central', 'Dinero'])
+				reply(aleatorio)
+
+			elif text == '/acorde':
+				aleatorio = random.choice(['TRANQUI SI SOMOS GENTE NORMAL, SOLO QUEREMOS QUE NOS GUIES\nGUIAMEEEEE', 'tracatracapumplasplastracatracaplasplasquetequetepantuquesumumtanquetequetetan (beatbox)'])
+				reply(aleatorio)
+
 			elif text == '/iker':
-				aleatorio = random.choice(['Con este floodito me voy a ir del grupito ahora mismito', 'hahahahaha', 'Soy el Iker, un sofisticado robot sexual enviado a través del tiempo para cambiarle el futuro a una mujer afortunada. jejejejeje'])
+				aleatorio = random.choice(['Con este floodito me voy a ir del grupito ahora mismito', 'hahahahaha', 'Soy el Iker, un sofisticado robot sexual enviado a traves del tiempo para cambiarle el futuro a una mujer afortunada. jejejejeje'])
 				reply(aleatorio)
 
 			elif text == '/lefuck':
 				aleatorio = random.choice(['Ub kalcetin \n Y sela metemo por el kulo', 'Compranos calientaburras \n y nos cojemos a dos putas'])
 				reply(aleatorio)
 
-			elif text == '/tiempo@ArenalSound_bot':
-				limit = datetime.datetime(2015, 07, 28, 8, 0, 0)
-				now = datetime.datetime.now()
-				diff = limit - now
-				def convert_timedelta(diff):
-					days, seconds = diff.days, diff.seconds
-					hours = seconds // 3600
-					minutes = (seconds % 3600) // 60
-					seconds = (seconds % 60)
-					return days, hours, minutes, seconds
-				diff = convert_timedelta(diff)
-				if diff[0] == 1:
-					text1="Queda %d dia" % (diff[0])
-				else:
-					text1="Quedan %d dias" % (diff[0])
+			elif text == '/alfonso':
+				aleatorio = random.choice(['Sabeis lo que me comeria yo ahora mismo?', 'Ahora mismo me comeria un pussy.'])
+				reply(aleatorio)
 
-				if diff[1] == 1:
-					text2=", %d hora" % (diff[1])
-				else:
-					text2=", %d horas" % (diff[1])
-				
-				if diff[2] == 1:
-					text3=", %d minuto" % (diff[2])
-				else:
-					text3=", %d minutos" % (diff[2])
-				
-				if diff[3] == 1:
-					text4="y %d segundo para el Arenal Sound 2015!" % (diff[3])
-				else:
-					text4="y %d segundos para el Arenal Sound 2015!" % (diff[3])
-				text="%s %s %s %s" % (text1, text2, text3, text4)
-				text = str(text)
-				reply(text)
-	   
+			elif text == '/michel':
+				reply('En este grupo de mierda solo se puede hablar tranquilamente a partir de las 2 de la manyana. Putos flooders si supierais el asco que me dais no me diriais ni donde sera la quedada. este flood es un insulto a mi inteligencia y a la profesion de cocinero. Hace tanto calor que entre comerme un conyo y una sandia bien fresquita me comeria un conyo, pa que os voy a enganyar. Estais arruinando mi puta experiencia en telegram.')
+
+			elif text == '/jess':
+				aleatorio = random.choice(['Mis orales son 10 minutos.', 'Fer... tu polla esta un poco deforme\njijiji\nEs un poco fea eh...'])
+				reply(aleatorio)
+
+			elif text == '/shurtiz':
+				reply('No endioses.')
+
+			elif text == '/aaaa':
+				reply('Ups...\na\na\na\na\na\na\na\na\na\na\na\na\na\na\na\na\na\na\na\na\na\na\na\na\na\na\na\na\nMenos mal.')
+
 app = webapp2.WSGIApplication([
 	('/me', MeHandler),
 	('/updates', GetUpdatesHandler),
